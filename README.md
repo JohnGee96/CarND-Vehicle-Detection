@@ -116,8 +116,10 @@ The filtering process is found in the file `heatmap.py`
 
 The robustness of this model is solely relying on the position of the sliding windows in relation to where the vehicles are on the road. When doing this project, there are countless times the model fails to detect car on the test images not because the SVM model is underfitting but because the windows are not landing on the exact position of the vehicle. 
 
-It is not practical to overlap numerous layers of searching windows. Reducing the number of searching windows in exchange for efficiency is evitable. 
+It is not practical to overlap numerous layers of searching windows. Reducing the number of searching windows in exchange for efficiency is inevitable. 
 
-I think task of detecting objects with features based on HOG and color patterns are is downplaying the complexity of the problem. Certainly, this project is meant to introduce traditional machine learning techniques, but this highlights the critical dilemma of traditional machine learning: engineer complicated features to render high performance in specific situation but giving up generalization.
+The model is not doing too well on areas with shallow. It sometimes will mistaken road signs as vehicles, perhaps the rectangular shape of both objects share some resemblance. 
 
-If I have time to revisit this project, I will also like to explore this problem using deep learning object detection models like YOLO.
+I think detecting objects with features based on HOG and color patterns is downplaying the complexity of the problem. Certainly, this project is meant to introduce traditional machine learning techniques, but this highlights the critical dilemma of traditional machine learning: engineer complicated features to render high performance but giving up generalization across all situations.
+
+If I have time to revisit this project, I will also like to explore this problem using deep learning object detection models like YOLOv3.
