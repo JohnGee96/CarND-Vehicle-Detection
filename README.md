@@ -106,8 +106,11 @@ The filtering process is found in the file `heatmap.py`
 ---
 
 ### Video Implementation
+
 [![Link to Youtube](https://i.ytimg.com/vi/Hov1K5ptxa8/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB0vnjBqv8LRDWrBUIKSirAXbQvtw)](https://youtu.be/Hov1K5ptxa8)
 
+### Using YOLOv2
+[![Link to Youtube](https://i.ytimg.com/vi/3k1MoMVDxEk/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCrmlEyPsLQjduIWYkho-U1rxQX8w)](https://youtu.be/3k1MoMVDxEk)
 ---
 
 ### Discussion
@@ -120,6 +123,15 @@ It is not practical to overlap numerous layers of searching windows. Reducing th
 
 The model is not doing too well on areas with shallow. It sometimes will mistaken road signs as vehicles, perhaps the rectangular shape of both objects share some resemblance. 
 
-I think detecting objects with features based on HOG and color patterns is downplaying the complexity of the problem. Certainly, this project is meant to introduce traditional machine learning techniques, but this highlights the critical dilemma of traditional machine learning: engineer complicated features to render high performance but giving up generalization across all situations.
+I think detecting objects with features based on HOG and color patterns is downplaying the complexity of the problem. Certainly, this project is meant to introduce traditional  machine learning techniques, but this highlights the critical dilemma of feature based machine learning and computer vision: engineer complicated features to render high performance but giving up generalization across all situations.
 
-If I have time to revisit this project, I will also like to explore this problem using deep learning object detection models like YOLOv3.
+For improving the stability of the detected frames, I can keep track of the detected vehicles frame to frame and normalize the difference between the size of the detected window from frame to frame. In addition, I can also deploy some tracking techniques such as `BOOSTING, MIL, KCF, TLD, MEDIANFLOW, and GOTURN`. There are implementation fo these algorithms in cv2 such as `cv2.TrackerKCF`. 
+
+The mixed used of detection and tracking algorithms can compensate each other and also improve the performance of the detection model, since object tracking is much less expensive computation when compared to object detection. 
+
+Another idea of is that once object is detected, the frame of search can be reduced to fixed pixel area around the detected window in the next frame. 
+
+Comparing the result with that using YOLOv2, the output of the CNN based model is much cleaner. Needless to justify YOLO's effectiveness in the task of object detection. The false positive on the left side of the road can be easily filtered with a single-point reference, but the model did misclassify a car to be a truck on a rare occasion throughout the video and mistaken the traffic sign for a truck. These false positives can be handled by tuning the hyperparameters of the model such the minimum confidence thresholds.
+
+The YOLO output is ran on AWS g2.2xlarge instance. The processing bandwidth is `3.5 FPS`. 
+

@@ -9,7 +9,7 @@ from heatmap import *
 from scipy.ndimage.measurements import label
 
 PRESET_PATH = './model.p'
-TEST_IMAGE = 'test_images/test.jpg'
+TEST_IMAGE = 'test_images/test1.jpg'
 
 model = clf.load_preset(PRESET_PATH)
 
@@ -56,15 +56,19 @@ if __name__ == '__main__':
     print("Time take to process image:", round(t_end - t_start, 2))
     window_img = draw_boxes(image, hot_windows, color=(0, 0, 255), thick=6)                 
 
-    fig = plt.figure(figsize=(12,6))
-    plt.subplot(131)
+    # fig = plt.figure(figsize=(12,6))
+    # plt.subplot(131)
+    # plt.imshow(window_img)
+    # plt.title('All Detected Windows')
+    # plt.subplot(132)
+    # plt.imshow(draw_img)
+    # plt.title('Car Positions')
+    # plt.subplot(133)
+    # plt.imshow(heatmap, cmap='hot')
+    # plt.title('Heat Map')
+    # fig.tight_layout()
+    # plt.show()
     plt.imshow(window_img)
-    plt.title('All Detected Windows')
-    plt.subplot(132)
-    plt.imshow(draw_img)
-    plt.title('Car Positions')
-    plt.subplot(133)
-    plt.imshow(heatmap, cmap='hot')
-    plt.title('Heat Map')
-    fig.tight_layout()
+    plt.axis('off')
+    plt.tight_layout()
     plt.show()
