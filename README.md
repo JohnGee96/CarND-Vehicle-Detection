@@ -103,6 +103,7 @@ Finally, I also enforced a minimum width for the detected window, and discard an
     MIN_BOX_WIDTH = 40
 
 The filtering process is found in the file `heatmap.py`
+
 ---
 
 ### Video Implementation
